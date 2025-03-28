@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Holcim Chat</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .chat-container {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .sidebar {
+      width: 320px;
+      background: #f9fafb;
+      border-right: 1px solid #e5e7eb;
+      flex-shrink: 0;
+    }
+    .chat-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .message-sent {
+      background: #3b82f6;
+      color: white;
+      align-self: flex-end;
+    }
+    .message-received {
+      background: #e5e7eb;
+      color: #1f2937;
+      align-self: flex-start;
+    }
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: absolute;
+        z-index: 10;
+        display: none;
+      }
+      .chat-area {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="chat-container">
+    <!-- Sidebar -->
+    <div class="sidebar flex flex-col">
+      <!-- Header del sidebar -->
+      <div class="p-4 bg-gradient-to-r from-blue-600 to-blue-400 text-white flex items-center justify-between">
+        <h2 class="text-xl font-bold">Holcim Chat</h2>
+        <button class="p-2 hover:bg-blue-700 rounded-full">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Búsqueda -->
+      <div class="p-4">
+        <input type="text" placeholder="Buscar contacto..." class="w-full p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Lista de conversaciones -->
+      <div class="flex-1 overflow-y-auto">
+        <div class="p-4 hover:bg-gray-200 cursor-pointer flex items-center">
+          <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">JD</div>
+          <div class="ml-3">
+            <p class="font-semibold">Jorge Alvarez</p>
+            <p class="text-sm text-gray-600 truncate"> Ajá llave, cómo vamos con esta IA?</p>
+          </div>
+          <span class="ml-auto text-xs text-gray-500">10:30</span>
+        </div>
+        <div class="p-4 hover:bg-gray-200 cursor-pointer flex items-center">
+          <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">ML</div>
+          <div class="ml-3">
+            <p class="font-semibold">Juan Sebastián</p>
+            <p class="text-sm text-gray-600 truncate">Melo melo, vamos melos con la IA</p>
+          </div>
+          <span class="ml-auto text-xs text-gray-500">09:15</span>
+        </div>
+        <!-- Más contactos simulados -->
+      </div>
+    </div>
+
+    <!-- Área de chat -->
+    <div class="chat-area">
+      <!-- Header del chat -->
+      <div class="p-4 bg-white border-b flex items-center justify-between shadow-sm">
+        <div class="flex items-center">
+          <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">JD</div>
+          <div class="ml-3">
+            <p class="font-semibold">Cotizador</p>
+            <p class="text-sm text-green-500">En línea</p>
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <button class="p-2 hover:bg-gray-100 rounded-full" title="Videollamada">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+          </button>
+          <button class="p-2 hover:bg-gray-100 rounded-full" title="Más opciones">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mensajes -->
+      <div class="flex-1 p-6 overflow-y-auto bg-gray-50">
+        <div class="flex flex-col space-y-4">
+          <div class="message-received max-w-xs p-3 rounded-lg shadow-sm">
+            <p>Hola, Para Realizar un pedido</p>
+            <span class="text-xs text-gray-500 mt-1 block">10:25</span>
+          </div>
+          <div class="message-sent max-w-xs p-3 rounded-lg shadow-sm">
+            <p>Claro que si, dime ¿Qué productos te interesan?</p>
+            <span class="text-xs text-gray-200 mt-1 block text-right">10:26</span>
+          </div>
+          <div class="message-received max-w-xs p-3 rounded-lg shadow-sm">
+            <p>Mortero y cemento por favor.</p>
+            <span class="text-xs text-gray-500 mt-1 block">10:27</span>
+          </div>
+          <div class="message-sent max-w-xs p-3 rounded-lg shadow-sm">
+            <p>Claro que si, regalame tus datos para tomarte el pedido.</p>
+            <span class="text-xs text-gray-200 mt-1 block text-right">10:28</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input de mensaje -->
+      <div class="p-4 bg-white border-t flex items-center space-x-2">
+        <button class="p-2 hover:bg-gray-100 rounded-full" title="Adjuntar archivo">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.586-6.586a4 4 0 00-5.656-5.656l-6.586 6.586a6 6 0 108.486 8.486L15.172 7z"></path>
+          </svg>
+        </button>
+        <button class="p-2 hover:bg-gray-100 rounded-full" title="Emojis">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </button>
+        <input type="text" placeholder="Escribe un mensaje..." class="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <button class="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
